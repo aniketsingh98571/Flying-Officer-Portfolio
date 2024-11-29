@@ -1,9 +1,16 @@
-'use client'
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Plane, Award, Linkedin, Twitter, Instagram, ChevronRight } from 'lucide-react'
-import Image from "next/image"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Plane,
+  Award,
+  Linkedin,
+  Twitter,
+  Instagram,
+  ChevronRight,
+} from "lucide-react";
+import Image from "next/image";
 
 export function Portfolio() {
   return (
@@ -16,10 +23,26 @@ export function Portfolio() {
           </h1>
           <nav>
             <ul className="flex space-x-4">
-              <li><a href="#about" className="hover:underline">About</a></li>
-              <li><a href="#achievements" className="hover:underline">Achievements</a></li>
-              <li><a href="#trending" className="hover:underline">Trending</a></li>
-              <li><a href="#gallery" className="hover:underline">Gallery</a></li>
+              <li>
+                <a href="#about" className="hover:underline">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#achievements" className="hover:underline">
+                  Achievements
+                </a>
+              </li>
+              <li>
+                <a href="#trending" className="hover:underline">
+                  Trending
+                </a>
+              </li>
+              <li>
+                <a href="#gallery" className="hover:underline">
+                  Gallery
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -56,10 +79,17 @@ export function Portfolio() {
             />
             <div>
               <p className="text-lg mb-4">
-                Hello! I'm Akash Gaikwad, a passionate aviation engineer currently working as a Technical Engineer at United Airlines. With years of experience in the field, I specialize in aircraft maintenance, troubleshooting, and ensuring the safety and efficiency of commercial aircraft.
+                Hello! I&apos;m Akash Gaikwad, a passionate aviation engineer
+                currently working as a Technical Engineer at United Airlines.
+                With years of experience in the field, I specialize in aircraft
+                maintenance, troubleshooting, and ensuring the safety and
+                efficiency of commercial aircraft.
               </p>
               <p className="text-lg">
-                My expertise lies in avionics systems, aircraft structures, and propulsion systems. I'm dedicated to pushing the boundaries of aviation technology and contributing to the advancement of the aerospace industry.
+                My expertise lies in avionics systems, aircraft structures, and
+                propulsion systems. I&apos;m dedicated to pushing the boundaries
+                of aviation technology and contributing to the advancement of
+                the aerospace industry.
               </p>
             </div>
           </div>
@@ -74,7 +104,7 @@ export function Portfolio() {
             {[
               "Led a team in developing an innovative fuel efficiency system, resulting in a 5% reduction in fuel consumption across the fleet",
               "Received the 'Engineer of the Year' award at United Airlines for outstanding contributions to aircraft safety protocols",
-              "Published research on advanced composite materials in aircraft structures in the Journal of Aerospace Engineering"
+              "Published research on advanced composite materials in aircraft structures in the Journal of Aerospace Engineering",
             ].map((achievement, index) => (
               <Card key={index} className="bg-white">
                 <CardContent className="p-6">
@@ -111,24 +141,29 @@ export function Portfolio() {
       {/* Trending Posts Section */}
       <section id="trending" className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8 text-center">Trending Posts</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Trending Posts
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 title: "The Future of Sustainable Aviation",
-                excerpt: "Exploring eco-friendly technologies in the aviation industry...",
-                image: "/placeholder.svg?height=200&width=300"
+                excerpt:
+                  "Exploring eco-friendly technologies in the aviation industry...",
+                image: "/placeholder.svg?height=200&width=300",
               },
               {
                 title: "Advancements in Aircraft Propulsion",
-                excerpt: "Discussing the latest innovations in jet engine technology...",
-                image: "/placeholder.svg?height=200&width=300"
+                excerpt:
+                  "Discussing the latest innovations in jet engine technology...",
+                image: "/placeholder.svg?height=200&width=300",
               },
               {
                 title: "Navigating Challenges in Aviation Maintenance",
-                excerpt: "Insights into maintaining complex aircraft systems...",
-                image: "/placeholder.svg?height=200&width=300"
-              }
+                excerpt:
+                  "Insights into maintaining complex aircraft systems...",
+                image: "/placeholder.svg?height=200&width=300",
+              },
             ].map((post, index) => (
               <Card key={index} className="overflow-hidden">
                 <Image
@@ -157,9 +192,14 @@ export function Portfolio() {
           <h2 className="text-3xl font-bold mb-8 text-center">Gallery</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {[...Array(8)].map((_, index) => (
-              <div key={index} className="relative aspect-square overflow-hidden rounded-lg">
+              <div
+                key={index}
+                className="relative aspect-square overflow-hidden rounded-lg"
+              >
                 <Image
-                  src={`/placeholder.svg?height=300&width=300&text=Aviation+Image+${index + 1}`}
+                  src={`/placeholder.svg?height=300&width=300&text=Aviation+Image+${
+                    index + 1
+                  }`}
                   alt={`Aviation Image ${index + 1}`}
                   layout="fill"
                   objectFit="cover"
@@ -179,5 +219,5 @@ export function Portfolio() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
