@@ -22,10 +22,14 @@ interface ImageData {
   image: StaticImageData;
 }
 
+// Add a fallback image
+import fallbackImage from "@/app/assets/images/fallback.jpg"; // Create this fallback image
+
 export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [images, setImages] = useState<ImageData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     Promise.all(
@@ -34,31 +38,23 @@ export function Portfolio() {
         try {
           const image = await import(`@/app/assets/images/${num}.jpg`);
           return { num, image: image.default } as ImageData;
-        } catch {
-          try {
-            const image = await import(`@/app/assets/images/${num}.jpeg`);
-            return { num, image: image.default } as ImageData;
-          } catch {
-            try {
-              const image = await import(`@/app/assets/images/${num}.png`);
-              return { num, image: image.default } as ImageData;
-            } catch {
-              return null;
-            }
-          }
+        } catch (error) {
+          console.error(`Error loading image ${num}:`, error);
+          return { num, image: fallbackImage } as ImageData;
         }
       })
     )
-      .then((results) =>
-        setImages(results.filter((img): img is ImageData => img !== null))
-      )
+      .then((results) => setImages(results))
+      .catch((error) => {
+        console.error("Error loading images:", error);
+        setLoadError(true);
+      })
       .finally(() => setIsLoading(false));
   }, []);
 
-  // Update the Hero and About sections to handle loading state
-  const heroImage = !isLoading && images.length > 16 ? images[16].image : null;
-  const profileImage =
-    !isLoading && images.length > 30 ? images[30].image : null;
+  // Update the image selection logic with fallbacks
+  const heroImage = (!isLoading && images[16]?.image) || fallbackImage;
+  const profileImage = (!isLoading && images[30]?.image) || fallbackImage;
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
