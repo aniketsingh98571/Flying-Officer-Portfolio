@@ -14,11 +14,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { StaticImageData } from "next/image";
 
 // Define an interface for the image data
 interface ImageData {
   num: number;
-  image: string;
+  image: StaticImageData;
 }
 
 export function Portfolio() {
@@ -27,23 +28,37 @@ export function Portfolio() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Create array of image paths instead of dynamic imports
-    const imageArray = Array.from({ length: 40 }, (_, i) => ({
-      num: i + 1,
-      image: `/assets/images/${i + 1}.jpg`,
-    }));
-
-    setImages(imageArray);
-    setIsLoading(false);
+    Promise.all(
+      Array.from({ length: 40 }, async (_, i) => {
+        const num = i + 1;
+        try {
+          const image = await import(`@/app/assets/images/${num}.jpg`);
+          return { num, image: image.default } as ImageData;
+        } catch {
+          try {
+            const image = await import(`@/app/assets/images/${num}.jpeg`);
+            return { num, image: image.default } as ImageData;
+          } catch {
+            try {
+              const image = await import(`@/app/assets/images/${num}.png`);
+              return { num, image: image.default } as ImageData;
+            } catch {
+              return null;
+            }
+          }
+        }
+      })
+    )
+      .then((results) =>
+        setImages(results.filter((img): img is ImageData => img !== null))
+      )
+      .finally(() => setIsLoading(false));
   }, []);
 
-  // Update the image selection logic
-  const heroImage = !isLoading
-    ? `/assets/images/16.jpg`
-    : `/assets/images/37.jpg`;
-  const profileImage = !isLoading
-    ? `/assets/images/30.jpg`
-    : `/assets/images/37.jpg`;
+  // Update the Hero and About sections to handle loading state
+  const heroImage = !isLoading && images.length > 16 ? images[16].image : null;
+  const profileImage =
+    !isLoading && images.length > 30 ? images[30].image : null;
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
@@ -129,19 +144,20 @@ export function Portfolio() {
 
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center text-white">
-        <Image
-          src={heroImage}
-          alt="Akash Gaikwad - Aviation Professional"
-          fill
-          priority
-          className="absolute inset-0 z-0 object-cover"
-        />
+        {heroImage && (
+          <Image
+            src={heroImage}
+            alt="Akash Gaikwad - Aviation Professional"
+            fill
+            priority
+            className="absolute inset-0 z-0 object-cover"
+          />
+        )}
         <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
         <div className="relative z-20 text-center">
           <h2 className="text-5xl font-bold mb-4">Akash Gaikwad</h2>
           <p className="text-2xl mb-8">
-            AIRBUS FLEET ANALYST AT WORLD&apos;S LARGEST AIRLINE - UNITED
-            AIRLINES
+            AIRBUS FLEET ANALYST AT WORLD'S LARGEST AIRLINE - UNITED AIRLINES
           </p>
           <Button className="bg-blue-600 hover:bg-blue-700">Contact Me</Button>
         </div>
@@ -353,14 +369,16 @@ export function Portfolio() {
                 key={index}
                 className="group relative aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
               >
-                <Image
-                  src={imageData.image}
-                  alt={`Gallery Image ${imageData.num}`}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover transform group-hover:scale-110 transition-transform duration-300"
-                  loading={index < 8 ? "eager" : "lazy"}
-                />
+                {imageData && (
+                  <Image
+                    src={imageData.image}
+                    alt={`Gallery Image ${imageData.num}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover transform group-hover:scale-110 transition-transform duration-300"
+                    loading={index < 8 ? "eager" : "lazy"}
+                  />
+                )}
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300" />
               </div>
             ))}
