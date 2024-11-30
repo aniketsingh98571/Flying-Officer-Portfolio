@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { StaticImageData } from "next/image";
 
 // Define an interface for the image data
 interface ImageData {
