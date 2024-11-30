@@ -19,42 +19,32 @@ import { StaticImageData } from "next/image";
 // Define an interface for the image data
 interface ImageData {
   num: number;
-  image: StaticImageData;
+  image: string;
 }
-
-// Add a fallback image
-import fallbackImage from "@/app/assets/images/37.jpg"; // Create this fallback image
 
 export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [images, setImages] = useState<ImageData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    Promise.all(
-      Array.from({ length: 40 }, async (_, i) => {
-        const num = i + 1;
-        try {
-          const image = await import(`@/app/assets/images/${num}.jpg`);
-          return { num, image: image.default } as ImageData;
-        } catch (error) {
-          console.error(`Error loading image ${num}:`, error);
-          return { num, image: fallbackImage } as ImageData;
-        }
-      })
-    )
-      .then((results) => setImages(results))
-      .catch((error) => {
-        console.error("Error loading images:", error);
-        setLoadError(true);
-      })
-      .finally(() => setIsLoading(false));
+    // Create array of image paths instead of dynamic imports
+    const imageArray = Array.from({ length: 40 }, (_, i) => ({
+      num: i + 1,
+      image: `/assets/images/${i + 1}.jpg`,
+    }));
+
+    setImages(imageArray);
+    setIsLoading(false);
   }, []);
 
-  // Update the image selection logic with fallbacks
-  const heroImage = (!isLoading && images[16]?.image) || fallbackImage;
-  const profileImage = (!isLoading && images[30]?.image) || fallbackImage;
+  // Update the image selection logic
+  const heroImage = !isLoading
+    ? `/assets/images/16.jpg`
+    : `/assets/images/37.jpg`;
+  const profileImage = !isLoading
+    ? `/assets/images/30.jpg`
+    : `/assets/images/37.jpg`;
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
@@ -140,15 +130,13 @@ export function Portfolio() {
 
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center text-white">
-        {heroImage && (
-          <Image
-            src={heroImage}
-            alt="Akash Gaikwad - Aviation Professional"
-            fill
-            priority
-            className="absolute inset-0 z-0 object-cover"
-          />
-        )}
+        <Image
+          src={heroImage}
+          alt="Akash Gaikwad - Aviation Professional"
+          fill
+          priority
+          className="absolute inset-0 z-0 object-cover"
+        />
         <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
         <div className="relative z-20 text-center">
           <h2 className="text-5xl font-bold mb-4">Akash Gaikwad</h2>
@@ -366,16 +354,14 @@ export function Portfolio() {
                 key={index}
                 className="group relative aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
               >
-                {imageData && (
-                  <Image
-                    src={imageData.image}
-                    alt={`Gallery Image ${imageData.num}`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-cover transform group-hover:scale-110 transition-transform duration-300"
-                    loading={index < 8 ? "eager" : "lazy"}
-                  />
-                )}
+                <Image
+                  src={imageData.image}
+                  alt={`Gallery Image ${imageData.num}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover transform group-hover:scale-110 transition-transform duration-300"
+                  loading={index < 8 ? "eager" : "lazy"}
+                />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300" />
               </div>
             ))}
