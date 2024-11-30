@@ -23,7 +23,7 @@ interface ImageData {
 }
 
 // Add a fallback image
-import fallbackImage from "@/app/assets/images/fallback.jpg"; // Create this fallback image
+import fallbackImage from "@/app/assets/images/37.jpg"; // Create this fallback image
 
 export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
