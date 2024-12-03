@@ -108,8 +108,8 @@ export function Portfolio() {
   ];
 
   // Update hero and profile image references
-  const heroImage = images[16].image;
-  const profileImage = images[30].image;
+  const heroImage = images[5].image;
+  const profileImage = images[6].image;
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
