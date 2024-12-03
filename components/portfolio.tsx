@@ -23,8 +23,8 @@ import image4 from "@/app/assets/images/four.jpg";
 import image6 from "@/app/assets/images/six.jpg";
 import image7 from "@/app/assets/images/seven.jpg";
 import image8 from "@/app/assets/images/eight.jpg";
-import image9 from "@/app/assets/images/nine.JPG";
-import image11 from "@/app/assets/images/eleven.JPG";
+// import image9 from "@/app/assets/images/nine.JPG";
+// import image11 from "@/app/assets/images/eleven.JPG";
 import image12 from "@/app/assets/images/12.jpg";
 import image13 from "@/app/assets/images/13.jpg";
 import image14 from "@/app/assets/images/14.jpg";
@@ -43,11 +43,11 @@ import image27 from "@/app/assets/images/27.jpg";
 import image28 from "@/app/assets/images/28.jpg";
 import image29 from "@/app/assets/images/29.jpg";
 import image30 from "@/app/assets/images/30.jpg";
-import image31 from "@/app/assets/images/31.JPG";
-import image32 from "@/app/assets/images/32.JPG";
-import image33 from "@/app/assets/images/33.JPG";
-import image34 from "@/app/assets/images/34.JPG";
-import image35 from "@/app/assets/images/35.PNG";
+// import image31 from "@/app/assets/images/31.JPG";
+// import image32 from "@/app/assets/images/32.JPG";
+// import image33 from "@/app/assets/images/33.JPG";
+// import image34 from "@/app/assets/images/34.JPG";
+// import image35 from "@/app/assets/images/35.PNG";
 import image36 from "@/app/assets/images/36.jpg";
 import image37 from "@/app/assets/images/37.jpg";
 import image38 from "@/app/assets/images/38.jpg";
@@ -73,9 +73,9 @@ export function Portfolio() {
     { num: 6, image: image6 },
     { num: 7, image: image7 },
     { num: 8, image: image8 },
-    { num: 9, image: image9 },
+    // { num: 9, image: image9 },
     // { num: 10, image: image10 },
-    { num: 11, image: image11 },
+    // { num: 11, image: image11 },
     { num: 12, image: image12 },
     { num: 13, image: image13 },
     { num: 14, image: image14 },
@@ -95,11 +95,11 @@ export function Portfolio() {
     { num: 28, image: image28 },
     { num: 29, image: image29 },
     { num: 30, image: image30 },
-    { num: 31, image: image31 },
-    { num: 32, image: image32 },
-    { num: 33, image: image33 },
-    { num: 34, image: image34 },
-    { num: 35, image: image35 },
+    // { num: 31, image: image31 },
+    // { num: 32, image: image32 },
+    // { num: 33, image: image33 },
+    // { num: 34, image: image34 },
+    // { num: 35, image: image35 },
     { num: 36, image: image36 },
     { num: 37, image: image37 },
     { num: 38, image: image38 },
