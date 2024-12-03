@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { StaticImageData } from "next/image";
+// import { StaticImageData } from "next/image";
 import image1 from "@/app/assets/images/one.jpg";
 import image2 from "@/app/assets/images/two.jpg";
 import image3 from "@/app/assets/images/three.jpg";
