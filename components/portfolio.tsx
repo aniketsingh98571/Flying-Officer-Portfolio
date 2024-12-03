@@ -55,10 +55,10 @@ import image39 from "@/app/assets/images/39.png";
 import image40 from "@/app/assets/images/40.jpg";
 
 // Define an interface for the image data
-interface ImageData {
-  num: number;
-  image: StaticImageData;
-}
+// interface ImageData {
+//   num: number;
+//   image: StaticImageData;
+// }
 
 export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
