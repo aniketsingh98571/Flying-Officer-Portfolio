@@ -19,7 +19,7 @@ import image1 from "@/app/assets/images/one.jpg";
 import image2 from "@/app/assets/images/two.jpg";
 import image3 from "@/app/assets/images/three.jpg";
 import image4 from "@/app/assets/images/four.jpg";
-import image5 from "@/app/assets/images/five.jpg";
+// import image5 from "@/app/assets/images/five.jpg";
 import image6 from "@/app/assets/images/six.jpg";
 import image7 from "@/app/assets/images/seven.jpg";
 import image8 from "@/app/assets/images/eight.jpg";
@@ -69,7 +69,7 @@ export function Portfolio() {
     { num: 2, image: image2 },
     { num: 3, image: image3 },
     { num: 4, image: image4 },
-    { num: 5, image: image5 },
+    // { num: 5, image: image5 },
     { num: 6, image: image6 },
     { num: 7, image: image7 },
     { num: 8, image: image8 },
