@@ -64,7 +64,7 @@ export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Create images array directly using imported images
-  const images: ImageData[] = [
+  const images = [
     { num: 1, image: image1 },
     { num: 2, image: image2 },
     { num: 3, image: image3 },
