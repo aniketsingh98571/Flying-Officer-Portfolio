@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Flying Officer | Akash Gaikwad",
-  description: "Akash Gaikwad",
+  title: "Mr. Akash Sunil Gaikwad",
+  description: "Mr. Akash Sunil Gaikwad",
 };
 
 export default function RootLayout({

@@ -38,6 +38,8 @@ import image37 from "@/app/assets/images/37.jpg";
 import image38 from "@/app/assets/images/38.jpg";
 import image39 from "@/app/assets/images/39.png";
 import image40 from "@/app/assets/images/40.jpg";
+import background from "@/app/assets/images/background.jpg";
+import about from "@/app/assets/images/about.jpg";
 
 export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,8 +76,8 @@ export function Portfolio() {
   );
 
   // Update hero and profile image references
-  const heroImage = images[1].image;
-  const profileImage = images[4].image;
+  const heroImage = background;
+  const profileImage = about;
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
@@ -172,7 +174,7 @@ export function Portfolio() {
         )}
         <div className="absolute inset-0 bg-black opacity-50 z-10"></div>
         <div className="relative z-20 text-center">
-          <h2 className="text-5xl font-bold mb-4">Akash Gaikwad</h2>
+          <h2 className="text-5xl font-bold mb-4">Mr. Akash Sunil Gaikwad</h2>
           <p className="text-2xl mb-8">
             AIRBUS FLEET ANALYST AT WORLD&apos;S LARGEST AIRLINE - UNITED
             AIRLINES
