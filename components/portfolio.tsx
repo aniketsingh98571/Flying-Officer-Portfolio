@@ -365,10 +365,13 @@ export function Portfolio() {
               "https://www.instagram.com/p/CmBx-9OouPk/",
               "https://www.instagram.com/p/C-u_Zi1hFZs/",
             ].map((post, index) => (
-              <div key={index} className="aspect-square w-full">
+              <div key={index} className="w-full overflow-hidden">
                 <iframe
                   src={`${post}embed`}
-                  className="w-full h-full border-none overflow-hidden"
+                  className="w-full border-none"
+                  style={{
+                    height: "800px",
+                  }}
                   allowFullScreen
                 />
               </div>
