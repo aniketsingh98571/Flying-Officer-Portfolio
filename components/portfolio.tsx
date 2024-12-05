@@ -14,102 +14,68 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-// import { StaticImageData } from "next/image";
-import image1 from "@/app/assets/images/one.jpg";
 import image2 from "@/app/assets/images/two.jpg";
-import image3 from "@/app/assets/images/three.jpg";
 import image4 from "@/app/assets/images/four.jpg";
-// import image5 from "@/app/assets/images/five.jpg";
 import image6 from "@/app/assets/images/six.jpg";
-import image7 from "@/app/assets/images/seven.jpg";
 import image8 from "@/app/assets/images/eight.jpg";
-// import image9 from "@/app/assets/images/nine.JPG";
-// import image11 from "@/app/assets/images/eleven.JPG";
 import image12 from "@/app/assets/images/12.jpg";
 import image13 from "@/app/assets/images/13.jpg";
 import image14 from "@/app/assets/images/14.jpg";
 import image15 from "@/app/assets/images/15.jpg";
 import image16 from "@/app/assets/images/16.jpg";
-import image17 from "@/app/assets/images/17.jpg";
 import image19 from "@/app/assets/images/19.jpg";
 import image20 from "@/app/assets/images/20.jpg";
 import image21 from "@/app/assets/images/21.jpg";
 import image22 from "@/app/assets/images/22.jpg";
 import image23 from "@/app/assets/images/23.jpg";
 import image24 from "@/app/assets/images/24.jpg";
-import image25 from "@/app/assets/images/25.jpg";
 import image26 from "@/app/assets/images/26.jpg";
-import image27 from "@/app/assets/images/27.jpg";
 import image28 from "@/app/assets/images/28.jpg";
 import image29 from "@/app/assets/images/29.jpg";
 import image30 from "@/app/assets/images/30.jpg";
-// import image31 from "@/app/assets/images/31.JPG";
-// import image32 from "@/app/assets/images/32.JPG";
-// import image33 from "@/app/assets/images/33.JPG";
-// import image34 from "@/app/assets/images/34.JPG";
-// import image35 from "@/app/assets/images/35.PNG";
 import image36 from "@/app/assets/images/36.jpg";
 import image37 from "@/app/assets/images/37.jpg";
 import image38 from "@/app/assets/images/38.jpg";
 import image39 from "@/app/assets/images/39.png";
 import image40 from "@/app/assets/images/40.jpg";
 
-// Define an interface for the image data
-// interface ImageData {
-//   num: number;
-//   image: StaticImageData;
-// }
-
 export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Create images array directly using imported images
+  // Updated images array with unique entries
   const images = [
-    { num: 1, image: image1 },
     { num: 2, image: image2 },
-    { num: 3, image: image3 },
     { num: 4, image: image4 },
-    // { num: 5, image: image5 },
     { num: 6, image: image6 },
-    { num: 7, image: image7 },
     { num: 8, image: image8 },
-    // { num: 9, image: image9 },
-    // { num: 10, image: image10 },
-    // { num: 11, image: image11 },
     { num: 12, image: image12 },
     { num: 13, image: image13 },
     { num: 14, image: image14 },
     { num: 15, image: image15 },
     { num: 16, image: image16 },
-    { num: 17, image: image17 },
-    // { num: 18, image: image18 },
     { num: 19, image: image19 },
     { num: 20, image: image20 },
     { num: 21, image: image21 },
     { num: 22, image: image22 },
     { num: 23, image: image23 },
     { num: 24, image: image24 },
-    { num: 25, image: image25 },
     { num: 26, image: image26 },
-    { num: 27, image: image27 },
     { num: 28, image: image28 },
     { num: 29, image: image29 },
     { num: 30, image: image30 },
-    // { num: 31, image: image31 },
-    // { num: 32, image: image32 },
-    // { num: 33, image: image33 },
-    // { num: 34, image: image34 },
-    // { num: 35, image: image35 },
     { num: 36, image: image36 },
     { num: 37, image: image37 },
     { num: 38, image: image38 },
     { num: 39, image: image39 },
     { num: 40, image: image40 },
-  ];
+  ].filter(
+    (item, index, self) =>
+      index === self.findIndex((t) => t.image.src === item.image.src)
+  );
 
   // Update hero and profile image references
-  const heroImage = images[5].image;
-  const profileImage = images[6].image;
+  const heroImage = images[1].image;
+  const profileImage = images[4].image;
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900">
