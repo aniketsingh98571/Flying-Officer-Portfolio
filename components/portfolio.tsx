@@ -13,7 +13,7 @@ import {
   Phone,
 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import image2 from "@/app/assets/images/two.jpg";
 import image4 from "@/app/assets/images/four.jpg";
 import image6 from "@/app/assets/images/six.jpg";
@@ -43,6 +43,34 @@ import about from "@/app/assets/images/about.jpg";
 
 export function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [trendingPosts, setTrendingPosts] = useState<string[]>([]);
+
+  useEffect(() => {
+    async function fetchTrendingPosts() {
+      try {
+        const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_DOC!);
+        const text = await response.text();
+
+        // Clean up the text and parse URLs
+        const cleanedText = text
+          .replace(/[\[\]"\r\s]/g, "") // Remove brackets, quotes, carriage returns, and whitespace
+          .split(",") // Split by comma
+          .filter((url) => url.trim().length > 0) // Remove empty entries
+          .map((url) => url.trim()); // Clean up any remaining whitespace
+        setTrendingPosts(cleanedText);
+      } catch (error) {
+        console.error("Error fetching trending posts:", error);
+        // Fallback to default posts if fetch fails
+        setTrendingPosts([
+          "https://www.instagram.com/reel/DBglynTIS0Y/",
+          "https://www.instagram.com/reel/DBG0ngEIhXJ/",
+          "https://www.instagram.com/p/C5nEvl6JZfl/",
+        ]);
+      }
+    }
+
+    fetchTrendingPosts();
+  }, []);
 
   // Updated images array with unique entries
   const images = [
@@ -359,14 +387,7 @@ export function Portfolio() {
             Trending Posts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              "https://www.instagram.com/reel/DBglynTIS0Y/",
-              "https://www.instagram.com/reel/DBG0ngEIhXJ/",
-              "https://www.instagram.com/p/C5nEvl6JZfl/",
-              "https://www.instagram.com/reel/C0OmIZRpRYs/",
-              "https://www.instagram.com/p/CmBx-9OouPk/",
-              "https://www.instagram.com/p/C-u_Zi1hFZs/",
-            ].map((post, index) => (
+            {trendingPosts.map((post, index) => (
               <div key={index} className="w-full overflow-hidden">
                 <iframe
                   src={`${post}embed`}
